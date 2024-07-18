@@ -1,0 +1,15 @@
+# scripts/fetch_token_data.py
+
+import requests
+import pandas as pd
+
+def fetch_token_data(api_url):
+    response = requests.get(api_url)
+    data = response.json()
+    df = pd.DataFrame(data)
+    df.to_csv('data/token_data.csv', index=False)
+    return df
+
+# Example usage:
+# df = fetch_token_data('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum')
+# print(df.head())
